@@ -1,9 +1,35 @@
 package sk.stuba.fei.uim.oop.hra;
+import sk.stuba.fei.uim.oop.karty.Karta;
+import java.util.ArrayList;
 
 public class Hrac {
-    private int pocetKaciek;
+    private int pocetKaciek=5;
+    private ArrayList<Karta>karty;
+    public int cisloHraca;
 
-    public Hrac(int pocetKaciek) {
-        this.pocetKaciek = pocetKaciek;
+    public Hrac(int cisloHraca) {
+        this.cisloHraca = cisloHraca;this.karty=new ArrayList<>();
     }
+
+    public void zastrelKacku(){
+        pocetKaciek--;
+    }
+
+    public int getPocetKaciek() {
+        return this.pocetKaciek;
+    }
+
+    public void vezmiKarty(ArrayList<Karta> balikAkcnychKariet) {
+        for (int i = 0; i < 3; i++) {
+            karty.add(balikAkcnychKariet.get(0));
+            balikAkcnychKariet.remove(0);
+        }
+    }
+
+    public void vypisKarty(){
+        for(int i = 0; i < 3; i++ ){
+            System.out.println(karty.get(i).);
+        }
+    }
+
 }
