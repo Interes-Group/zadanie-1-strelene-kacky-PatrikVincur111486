@@ -8,14 +8,13 @@ import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 import java.util.ArrayList;
 
 public class DivokyBill extends Karta {
-    public String nazovKarty;
 
-    public DivokyBill() {
-        this.nazovKarty = "Divoký Bill";
+    public DivokyBill(String nazovKarty) {
+        super(nazovKarty);
     }
 
     @Override
-    public void zahrajKartu(boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
         int indexKacky= ZKlavesnice.readInt("Zadaj číslo v rybníku, na ktoré chceš vystreliť");
         while(indexKacky<0 || indexKacky>5){
             indexKacky= ZKlavesnice.readInt("Zadal si zlé číslo,zadaj nové číslo (0-5)");

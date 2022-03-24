@@ -7,13 +7,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Rosambo extends Karta {
-    String nazovKarty;
-
-    public Rosambo() {
-        this.nazovKarty = "Rošambo";
+    public Rosambo(String nazovKarty) {
+        super(nazovKarty);
     }
+
     @Override
-    public void zahrajKartu(boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
         Collections.shuffle(rybnik);
     }
 }

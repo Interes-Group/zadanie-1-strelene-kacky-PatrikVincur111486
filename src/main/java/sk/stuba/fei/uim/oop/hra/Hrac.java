@@ -11,6 +11,14 @@ public class Hrac {
         this.cisloHraca = cisloHraca;this.karty=new ArrayList<>();
     }
 
+    /*public void vezmiKartu(String NazovZobranejKarty) {
+        this.karty.remove();*/
+    //}
+
+    public ArrayList<Karta> getKarty() {
+        return karty;
+    }
+
     public void zastrelKacku(){
         pocetKaciek--;
     }
@@ -19,16 +27,16 @@ public class Hrac {
         return this.pocetKaciek;
     }
 
-    public void vezmiKarty(ArrayList<Karta> balikAkcnychKariet) {
-        for (int i = 0; i < 3; i++) {
-            karty.add(balikAkcnychKariet.get(0));
+    public void vezmiKarty(ArrayList<Karta> balikAkcnychKariet,int pocetKariet) {
+        for (int i = 0; i < pocetKariet; i++) {
+            this.karty.add(balikAkcnychKariet.get(0));
             balikAkcnychKariet.remove(0);
         }
     }
 
     public void vypisKarty(){
-        for(int i = 0; i < 3; i++ ){
-            System.out.println(karty.get(i).);
+        for(int i = 0; i < 3; i++ ){        //tu je chyba
+            System.out.println(i+". "+karty.get(i).vratNazovKarty());
         }
     }
 

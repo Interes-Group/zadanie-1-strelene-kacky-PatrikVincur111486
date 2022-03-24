@@ -8,7 +8,8 @@ public class Kacka extends Karta {
     protected int indexHraca;
     private boolean jeZamierena;
 
-    public Kacka(int indexHraca) {
+    public Kacka(String nazovKarty, int indexHraca) {
+        super(nazovKarty);
         this.indexHraca = indexHraca;
     }
 
@@ -17,7 +18,7 @@ public class Kacka extends Karta {
     }
 
     @Override
-    public void zahrajKartu(boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
 
     }
 }

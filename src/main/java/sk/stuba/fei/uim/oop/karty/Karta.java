@@ -6,9 +6,20 @@ import sk.stuba.fei.uim.oop.hra.Hrac;
 import java.util.ArrayList;
 
 public abstract class Karta {
-    String nazovKarty;
+    protected String nazovKarty;
 
-    public abstract void zahrajKartu(boolean zamierene[], ArrayList<Karta> rybnik,ArrayList<Hrac> poleHracov,ArrayList<Karta> balikKarietRybnik);
-    public abstract void vypisNazovKarty(boolean zamierene[], ArrayList<Karta> rybnik,ArrayList<Hrac> poleHracov,ArrayList<Karta> balikKarietRybnik);
+    public Karta(String nazovKarty) {
+        this.nazovKarty = nazovKarty;
+    }
+
+    public String vratNazovKarty() {
+        return nazovKarty;
+    }
+
+    public void setNazovKarty(String nazovKarty) {
+        this.nazovKarty = nazovKarty;
+    }
+
+    public abstract void zahrajKartu(int hracNaRade,int zvolenaKarta, boolean zamierene[], ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik);
 
 }

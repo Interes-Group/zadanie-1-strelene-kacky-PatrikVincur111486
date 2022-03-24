@@ -8,32 +8,33 @@ import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 import java.util.ArrayList;
 
 public class Vystrelit extends Karta {
-    String nazovKarty;
-
-    public Vystrelit() {
-        this.nazovKarty = "Vystreliť";
+    public Vystrelit(String nazovKarty) {
+        super(nazovKarty);
     }
+
     @Override
-    public void zahrajKartu(boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
         ArrayList<Integer>vypis=new ArrayList<>();
-        for(int i=1;i<7;i++){
+        for(int i=0;i<6;i++){
             if(zamierene[i]){
+                System.out.println(i+". Zamierené");
                 vypis.add(i);
+            }
+            else{
+                System.out.println(i+". Nezamierené");
             }
         }
         int indexKacky = ZKlavesnice.readInt("Vyber si kačku: ");
         if(vypis.size()==0) {
-            System.out.println("Nemáš zamierené na žiadnu kačku");
+            System.out.println("Nemáš zamierené na žiadnu kačku,použi inú kartu");
         }
         else{
-            System.out.println("Máš zamierené na "+vypis.toString()+"kačky");
+
             while(indexKacky<0 || indexKacky>5){
                 indexKacky= ZKlavesnice.readInt("Zadal si zlé číslo kačky,zadaj nové číslo (0-5)");
             }
-        }
-        if(indexKacky!=-1) {
+            int indexHraca=((Kacka) rybnik.get(indexKacky)).getIndexHraca();
             if(rybnik.get(indexKacky) instanceof Kacka) {
-                int indexHraca=((Kacka) rybnik.get(indexKacky)).getIndexHraca();
                 poleHracov.get(indexHraca).zastrelKacku();
                 System.out.println("Zastrelil si kačku hráča č."+indexHraca);
                 rybnik.add(balikKarietRybnik.get(0));
@@ -41,7 +42,9 @@ public class Vystrelit extends Karta {
             else{
                 System.out.println("Trafil si vodu");
             }
+            poleHracov.get(indexHraca).getKarty().remove(zvolenaKarta);
+            zamierene[indexKacky]=false;
         }
-    zamierene[indexKacky]=false;
+
     }
 }
