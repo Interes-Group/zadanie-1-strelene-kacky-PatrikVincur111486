@@ -14,7 +14,7 @@ public class DivokyBill extends Karta {
     }
 
     @Override
-    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik, ArrayList<Karta> balikAkcnychKariet) {
         int indexVystrelenia = ZKlavesnice.readInt("Zadaj číslo v rybníku, na ktoré chceš vystreliť");
         while(indexVystrelenia <0 || indexVystrelenia >5){
             indexVystrelenia = ZKlavesnice.readInt("Zadal si zlé číslo,zadaj nové číslo (0-5)");
@@ -29,7 +29,8 @@ public class DivokyBill extends Karta {
         else{
             System.out.println("Trafil si vodu");
         }
-    poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
-    zamierene[indexVystrelenia]=false;
+        balikAkcnychKariet.add(poleHracov.get(hracNaRade).getKarty().get(zvolenaKarta));
+        poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
+        zamierene[indexVystrelenia]=false;
     }
 }

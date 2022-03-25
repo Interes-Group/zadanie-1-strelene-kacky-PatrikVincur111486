@@ -12,13 +12,14 @@ public class KacaciTanec extends Karta {
     }
 
     @Override
-    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik, ArrayList<Karta> balikAkcnychKariet) {
         balikKarietRybnik.addAll(rybnik);
         Collections.shuffle(balikKarietRybnik);
         rybnik.removeAll(rybnik);
         for(int i=0;i<6;i++){
             rybnik.add(balikKarietRybnik.get(0));
         }
+        balikAkcnychKariet.add(poleHracov.get(hracNaRade).getKarty().get(zvolenaKarta));
         poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
     }
 }

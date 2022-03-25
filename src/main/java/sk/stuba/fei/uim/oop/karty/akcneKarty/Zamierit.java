@@ -13,7 +13,7 @@ public class Zamierit extends Karta{
     }
 
     @Override
-    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik, ArrayList<Karta> balikAkcnychKariet) {
         int pocetZamierenych=0;
         for(int i=0;i<6;i++){
             if(zamierene[i]){
@@ -33,9 +33,10 @@ public class Zamierit extends Karta{
                 } else {
                     indexKacky = ZKlavesnice.readInt("Toto políčko už je zamierené, zadaj iné políčko");
                 }
-                poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
-                zamierene[indexKacky] = true;
             }
+            balikAkcnychKariet.add(poleHracov.get(hracNaRade).getKarty().get(zvolenaKarta));
+            poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
+            zamierene[indexKacky] = true;
         }
     }
 }

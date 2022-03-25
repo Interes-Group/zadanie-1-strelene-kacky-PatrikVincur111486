@@ -13,7 +13,7 @@ public class Vystrelit extends Karta {
     }
 
     @Override
-    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
+    public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik, ArrayList<Karta> balikAkcnychKariet) {
         ArrayList<Integer>vypis=new ArrayList<>();
         for(int i=0;i<6;i++){
             if(zamierene[i]){
@@ -39,6 +39,7 @@ public class Vystrelit extends Karta {
             else{
                 System.out.println("Trafil si vodu");
             }
+            balikAkcnychKariet.add(poleHracov.get(hracNaRade).getKarty().get(zvolenaKarta));
             poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
             zamierene[indexVystrelenia]=false;
         }

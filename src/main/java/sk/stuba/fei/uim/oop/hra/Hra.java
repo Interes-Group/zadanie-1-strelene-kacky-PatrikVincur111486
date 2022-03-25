@@ -32,7 +32,7 @@ public class Hra  {
         while(skontrolujKackyHracov()){
 
             vypisStavHry();
-            System.out.println("Na rade je hráč č."+(hracNaRade+1)+"\nTvoje karty: ");
+            System.out.println("\nNa rade je hráč č."+(hracNaRade+1)+"\nTvoje karty: ");
             poleHracov.get(hracNaRade).vypisKarty();
             if(spocitajZamieravace()==0 && spocitajVystrelit(hracNaRade)==3 || spocitajZamieravace()==6 && spocitajZamerit(hracNaRade)==3){
                 int vyhodenaKarta=ZKlavesnice.readInt("Nemôžeš zahrať žiadnu zo svojich kariet, vyber si jednu, ktorú vyhodíš");
@@ -42,10 +42,10 @@ public class Hra  {
             }
             int zvolenaKarta=ZKlavesnice.readInt("Zvoľ si číslo karty (0-2)");
             ArrayList<Karta> kartyHracaNaRade=poleHracov.get(hracNaRade).getKarty();
-            kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik);
+            kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik, );
             while(kartyHracaNaRade.size()==3) {
                 zvolenaKarta=ZKlavesnice.readInt("Vyber si inú kartu");
-                kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik);
+                kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik, );
             }
 
             poleHracov.get(hracNaRade).vezmiKarty(balikAkcnychKariet,1);
@@ -54,6 +54,12 @@ public class Hra  {
                 continue;
             }
             hracNaRade++;
+        }
+        //vitaz
+        for(int i=0;i<pocetHracov;i++){
+            if(poleHracov.get(i).getPocetKaciek()>0){
+                System.out.println("Hráč č."+i+" vyhral!");
+            }
         }
     }
 
