@@ -16,10 +16,6 @@ public abstract class Karta {
         return nazovKarty;
     }
 
-    public void setNazovKarty(String nazovKarty) {
-        this.nazovKarty = nazovKarty;
-    }
-
     public abstract void zahrajKartu(int hracNaRade,int zvolenaKarta, boolean zamierene[], ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik,ArrayList<Karta> balikAkcnychKariet);
 
 }

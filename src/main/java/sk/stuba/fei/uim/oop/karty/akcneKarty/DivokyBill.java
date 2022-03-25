@@ -20,11 +20,12 @@ public class DivokyBill extends Karta {
             indexVystrelenia = ZKlavesnice.readInt("Zadal si zlé číslo,zadaj nové číslo (0-5)");
         }
         if(rybnik.get(indexVystrelenia) instanceof Kacka) {
-            int indexHraca=((Kacka) rybnik.get(indexVystrelenia)).getIndexHraca();
-            poleHracov.get(indexHraca).zastrelKacku();
-            System.out.println("Zastrelil si kačku hráča č."+indexHraca+1);
+            int indexZasiahnutehoHraca =((Kacka) rybnik.get(indexVystrelenia)).getIndexHraca();
+            poleHracov.get(indexZasiahnutehoHraca).zastrelKacku();
+            System.out.println("Zastrelil si kačku hráča č."+ indexZasiahnutehoHraca);
             rybnik.remove(indexVystrelenia);
             rybnik.add(balikKarietRybnik.get(0));
+            balikKarietRybnik.remove(0);
         }
         else{
             System.out.println("Trafil si vodu");

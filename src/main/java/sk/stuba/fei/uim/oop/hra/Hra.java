@@ -32,20 +32,29 @@ public class Hra  {
         while(skontrolujKackyHracov()){
 
             vypisStavHry();
-            System.out.println("\nNa rade je hráč č."+(hracNaRade+1)+"\nTvoje karty: ");
+            System.out.println("\nNa rade je hráč č."+hracNaRade+"\nTvoje karty: ");
             poleHracov.get(hracNaRade).vypisKarty();
-            if(spocitajZamieravace()==0 && spocitajVystrelit(hracNaRade)==3 || spocitajZamieravace()==6 && spocitajZamerit(hracNaRade)==3){
+            if(spocitajZamieravace()==0 && spocitajVystrelit(hracNaRade)==3 || spocitajZamieravace()==6 && spocitajZamierit(hracNaRade)==3){
                 int vyhodenaKarta=ZKlavesnice.readInt("Nemôžeš zahrať žiadnu zo svojich kariet, vyber si jednu, ktorú vyhodíš");
+                balikKarietRybnik.add(poleHracov.get(hracNaRade).getKarty().get(vyhodenaKarta));
                 poleHracov.get(hracNaRade).getKarty().remove(vyhodenaKarta);
                 poleHracov.get(hracNaRade).vezmiKarty(balikAkcnychKariet,1);
                 continue;
             }
             int zvolenaKarta=ZKlavesnice.readInt("Zvoľ si číslo karty (0-2)");
             ArrayList<Karta> kartyHracaNaRade=poleHracov.get(hracNaRade).getKarty();
-            kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik, );
+            if(zvolenaKarta>2 || zvolenaKarta<0){
+                while(zvolenaKarta>2 || zvolenaKarta<0){
+                zvolenaKarta=ZKlavesnice.readInt("Zadal si kartu mimo rozsahu, vyber si inú kartu");
+                }
+            }
+            kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik, balikAkcnychKariet);
             while(kartyHracaNaRade.size()==3) {
                 zvolenaKarta=ZKlavesnice.readInt("Vyber si inú kartu");
-                kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik, );
+                while(zvolenaKarta>2 || zvolenaKarta<0){
+                    zvolenaKarta=ZKlavesnice.readInt("Zadal si kartu mimo rozsahu, vyber si inú kartu");
+                }
+                kartyHracaNaRade.get(zvolenaKarta).zahrajKartu(hracNaRade, zvolenaKarta, zamierene, rybnik, poleHracov, balikKarietRybnik, balikAkcnychKariet);
             }
 
             poleHracov.get(hracNaRade).vezmiKarty(balikAkcnychKariet,1);
@@ -55,9 +64,9 @@ public class Hra  {
             }
             hracNaRade++;
         }
-        //vitaz
-        for(int i=0;i<pocetHracov;i++){
-            if(poleHracov.get(i).getPocetKaciek()>0){
+
+        for(int i=0;i<this.pocetHracov;i++){
+            if(this.poleHracov.get(i).getPocetKaciek()>0){
                 System.out.println("Hráč č."+i+" vyhral!");
             }
         }
@@ -70,7 +79,7 @@ public class Hra  {
                 pocetZivychHracov++;
             }
             else{
-                poleHracov.remove(i);
+                balikAkcnychKariet.addAll(poleHracov.get(i).getKarty());
             }
         }
         return pocetZivychHracov > 1;
@@ -87,8 +96,11 @@ public class Hra  {
         this.balikKarietRybnik=new ArrayList<Karta>();
         for(int i=0;i<this.pocetHracov;i++) {
         for(int j=0;j<5;j++) {
-            this.balikKarietRybnik.add(new Kacka("Kačka",i));}
-        this.balikKarietRybnik.add(new Voda("Voda"));
+            if(j==0){
+                this.balikKarietRybnik.add(new Voda("Voda"));
+            }
+            this.balikKarietRybnik.add(new Kacka("Kačka",i));
+            }
         }
         Collections.shuffle(this.balikKarietRybnik);
     }
@@ -118,8 +130,7 @@ public class Hra  {
         }
         return pocetZamiereni;
     }
-    private int spocitajZamerit(int hracNaRade){
-        int pocetZamiereni=spocitajZamieravace();
+    private int spocitajZamierit(int hracNaRade){
         int pocetKarietZamierit=0;
         for(int i=0;i<3;i++){
             if(poleHracov.get(hracNaRade).getKarty().get(i).vratNazovKarty().equals("Zamieriť")){
@@ -129,7 +140,6 @@ public class Hra  {
         return pocetKarietZamierit;
     }
     private int spocitajVystrelit(int hracNaRade){
-        int pocetZamiereni=spocitajZamieravace();
         int pocetKarietVystrelit=0;
         for(int i=0;i<3;i++){
             if(poleHracov.get(hracNaRade).getKarty().get(i).vratNazovKarty().equals("Vystreliť")){

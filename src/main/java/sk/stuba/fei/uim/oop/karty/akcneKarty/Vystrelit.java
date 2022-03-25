@@ -33,8 +33,9 @@ public class Vystrelit extends Karta {
                 int indexHraca=((Kacka) rybnik.get(indexVystrelenia)).getIndexHraca();
                 poleHracov.get(indexHraca).zastrelKacku();
                 rybnik.remove(indexVystrelenia);
-                System.out.println("Zastrelil si kačku hráča č."+indexHraca);
+                System.out.println("Zastrelil si kačku hráča č." + (indexHraca));
                 rybnik.add(balikKarietRybnik.get(0));
+                balikKarietRybnik.remove(0);
             }
             else{
                 System.out.println("Trafil si vodu");
