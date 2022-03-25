@@ -11,10 +11,6 @@ public class Hrac {
         this.cisloHraca = cisloHraca;this.karty=new ArrayList<>();
     }
 
-    /*public void vezmiKartu(String NazovZobranejKarty) {
-        this.karty.remove();*/
-    //}
-
     public ArrayList<Karta> getKarty() {
         return karty;
     }
@@ -35,7 +31,7 @@ public class Hrac {
     }
 
     public void vypisKarty(){
-        for(int i = 0; i < 3; i++ ){        //tu je chyba
+        for(int i = 0; i < 3; i++ ){
             System.out.println(i+". "+karty.get(i).vratNazovKarty());
         }
     }

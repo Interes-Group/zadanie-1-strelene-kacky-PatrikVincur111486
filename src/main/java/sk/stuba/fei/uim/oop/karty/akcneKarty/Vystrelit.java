@@ -17,33 +17,30 @@ public class Vystrelit extends Karta {
         ArrayList<Integer>vypis=new ArrayList<>();
         for(int i=0;i<6;i++){
             if(zamierene[i]){
-                System.out.println(i+". Zamierené");
                 vypis.add(i);
             }
-            else{
-                System.out.println(i+". Nezamierené");
-            }
         }
-        int indexKacky = ZKlavesnice.readInt("Vyber si kačku: ");
-        if(vypis.size()==0) {
+        if(vypis.isEmpty()) {
             System.out.println("Nemáš zamierené na žiadnu kačku,použi inú kartu");
         }
         else{
+            int indexVystrelenia = ZKlavesnice.readInt("Vyber si zamierené políčko: ");
 
-            while(indexKacky<0 || indexKacky>5){
-                indexKacky= ZKlavesnice.readInt("Zadal si zlé číslo kačky,zadaj nové číslo (0-5)");
+            while(indexVystrelenia<0 || indexVystrelenia>5 || !zamierene[indexVystrelenia]){
+                indexVystrelenia= ZKlavesnice.readInt("Zadal si zlé číslo kačky,zadaj nové číslo (0-5)");
             }
-            int indexHraca=((Kacka) rybnik.get(indexKacky)).getIndexHraca();
-            if(rybnik.get(indexKacky) instanceof Kacka) {
+            if(rybnik.get(indexVystrelenia)instanceof Kacka){
+                int indexHraca=((Kacka) rybnik.get(indexVystrelenia)).getIndexHraca();
                 poleHracov.get(indexHraca).zastrelKacku();
+                rybnik.remove(indexVystrelenia);
                 System.out.println("Zastrelil si kačku hráča č."+indexHraca);
                 rybnik.add(balikKarietRybnik.get(0));
             }
             else{
                 System.out.println("Trafil si vodu");
             }
-            poleHracov.get(indexHraca).getKarty().remove(zvolenaKarta);
-            zamierene[indexKacky]=false;
+            poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
+            zamierene[indexVystrelenia]=false;
         }
 
     }

@@ -17,28 +17,25 @@ public class Zamierit extends Karta{
         int pocetZamierenych=0;
         for(int i=0;i<6;i++){
             if(zamierene[i]){
-            System.out.println(i+". Zamierené");
             pocetZamierenych++;
             }
-            else {
-                System.out.println(i + ". Nezamierené");
-            }
+
         }
         if(pocetZamierenych==6){
             System.out.println("Všetky políčka už sú zamierené, použi inú kartu");
         }
-        else{
-        int indexKacky= ZKlavesnice.readInt("Zadaj číslo v rybníku, na ktoré chceš zamieriť");
-        while(indexKacky<0 || indexKacky>6 || zamierene[indexKacky]){
-            if(zamierene[indexKacky]) {
-                System.out.println("Toto políčko už je zamierené");
+        else {
+            int indexKacky = ZKlavesnice.readInt("Zadaj číslo v rybníku, na ktoré chceš zamieriť");
+
+            while (indexKacky < 0 || indexKacky > 5 || zamierene[indexKacky]) {
+                if (indexKacky < 0 || indexKacky > 5) {
+                    indexKacky = ZKlavesnice.readInt("Zadal si zlé číslo,zadaj nové číslo (0-5)");
+                } else {
+                    indexKacky = ZKlavesnice.readInt("Toto políčko už je zamierené, zadaj iné políčko");
+                }
+                poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
+                zamierene[indexKacky] = true;
             }
-            else{
-            indexKacky= ZKlavesnice.readInt("Zadal si zlé číslo,zadaj nové číslo (0-5)");
-            }
-        }
-        poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
-        zamierene[indexKacky]=true;
         }
     }
 }

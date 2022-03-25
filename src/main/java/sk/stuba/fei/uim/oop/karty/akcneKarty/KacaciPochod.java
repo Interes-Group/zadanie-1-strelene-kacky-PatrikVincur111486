@@ -17,5 +17,6 @@ public class KacaciPochod extends Karta {
         balikKarietRybnik.add(prvaKarta);
         rybnik.add(balikKarietRybnik.get(0));
         balikKarietRybnik.remove(0);
+        poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
     }
 }

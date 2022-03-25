@@ -15,9 +15,10 @@ public class KacaciTanec extends Karta {
     public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
         balikKarietRybnik.addAll(rybnik);
         Collections.shuffle(balikKarietRybnik);
-        rybnik.clear();
+        rybnik.removeAll(rybnik);
         for(int i=0;i<6;i++){
             rybnik.add(balikKarietRybnik.get(0));
         }
+        poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
     }
 }

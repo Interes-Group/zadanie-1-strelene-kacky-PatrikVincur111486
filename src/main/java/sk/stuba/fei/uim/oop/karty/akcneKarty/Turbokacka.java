@@ -15,12 +15,13 @@ public class Turbokacka extends Karta {
 
     @Override
     public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
-        int indexKacky = ZKlavesnice.readInt("Vyber si kačku: ");
-        while ((indexKacky < 0 || indexKacky > 5) || (rybnik.get(indexKacky) instanceof Voda)) {
-            indexKacky = ZKlavesnice.readInt("Zadal si zlé číslo,zadaj nové číslo (0-5)");
+        int indexVRybniku = ZKlavesnice.readInt("Vyber si kačku: ");
+        while ((indexVRybniku < 0 || indexVRybniku > 5) || (rybnik.get(indexVRybniku) instanceof Voda)) {
+            indexVRybniku = ZKlavesnice.readInt("Zadal si zlé číslo,zadaj nové číslo (0-5)");
         }
-        Kacka vybranaKacka= (Kacka) rybnik.get(indexKacky);
-        rybnik.remove(indexKacky);
+        Kacka vybranaKacka= (Kacka) rybnik.get(indexVRybniku);
+        rybnik.remove(indexVRybniku);
         rybnik.add(0,vybranaKacka);
+        poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
     }
 }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Kacka extends Karta {
     protected int indexHraca;
-    private boolean jeZamierena;
 
     public Kacka(String nazovKarty, int indexHraca) {
         super(nazovKarty);

@@ -14,5 +14,6 @@ public class Rosambo extends Karta {
     @Override
     public void zahrajKartu(int hracNaRade, int zvolenaKarta, boolean[] zamierene, ArrayList<Karta> rybnik, ArrayList<Hrac> poleHracov, ArrayList<Karta> balikKarietRybnik) {
         Collections.shuffle(rybnik);
+        poleHracov.get(hracNaRade).getKarty().remove(zvolenaKarta);
     }
 }
